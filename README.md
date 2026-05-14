@@ -48,7 +48,7 @@ npm run start
 ## Customization
 
 ### Phone Number
-Replace all instances of `+919999999999` with your actual number.
+`+919850114660` 
 
 ### Colors
 Edit `tailwind.config.ts` → `theme.extend.colors`.
