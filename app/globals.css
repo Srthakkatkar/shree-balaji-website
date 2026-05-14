@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+Devanagari:wght@300;400;600;700;900&family=Outfit:wght@200;300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-bebas: 'Bebas Neue';
+  --font-noto: 'Noto Sans Devanagari';
+  --font-outfit: 'Outfit';
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #050505;
+  color: #f8f8f0;
+  font-family: var(--font-outfit), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #f5c518; border-radius: 2px; }
+
+/* Hide scrollbar for reels */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@layer components {
+  .btn-primary {
+    @apply bg-yellow text-black px-9 py-4 font-bold text-xs tracking-widest uppercase
+           inline-flex items-center gap-3 transition-all duration-300 cursor-pointer
+           hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(245,197,24,0.3)] hover:bg-yellow-deep;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+  }
+  .btn-primary-full {
+    @apply bg-yellow text-black px-9 py-4 font-bold text-xs tracking-widest uppercase w-full
+           flex items-center justify-center gap-3 transition-all duration-300 cursor-pointer
+           hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(245,197,24,0.3)] hover:bg-yellow-deep;
+  }
+  .btn-secondary {
+    @apply bg-transparent text-white px-9 py-4 text-xs tracking-widest uppercase
+           border border-white/20 inline-flex items-center gap-3
+           transition-all duration-300 hover:border-yellow hover:text-yellow hover:-translate-y-0.5;
+  }
+  .section-label {
+    @apply text-yellow text-[10px] tracking-[4px] uppercase flex items-center gap-3 mb-5;
+  }
+  .section-label::before {
+    content: '';
+    @apply block w-10 h-px bg-yellow flex-shrink-0;
+  }
+  .section-title {
+    @apply font-display text-5xl md:text-7xl lg:text-8xl leading-none tracking-wider mb-5;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   AMBIENT FX — CSS-only GPU-accelerated animations
+   All use transform/opacity only (compositor thread)
+   ═══════════════════════════════════════════════════ */
+
+/* Floating ring — slow, breathing rotation */
+.ambient-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  will-change: transform;
+  animation: ambientRotate linear infinite;
+}
+
+/* Light streak — thin horizontal gold line that pulses */
+.ambient-streak {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(245,197,24,0.6) 0%, rgba(245,197,24,0.15) 60%, transparent 100%);
+  will-change: opacity;
+  animation: ambientPulse ease-in-out infinite;
+}
+
+/* Floating orb — gentle float + fade */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+  animation: ambientFloat ease-in-out infinite;
+}
+
+/* Speed line — automotive aerodynamic accent */
+.ambient-speedline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(245,197,24,0.5) 100%);
+  will-change: opacity;
+  animation: ambientPulse 5s ease-in-out infinite;
+}
+
+@keyframes ambientRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes ambientFloat {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33%       { transform: translateY(-8px) translateX(4px); }
+  66%       { transform: translateY(4px) translateX(-3px); }
+}
+
+@keyframes ambientPulse {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 0.9; }
+}
+
+/* ═══════════════════════════════════════════════════
+   GLOBAL SMOOTHNESS IMPROVEMENTS
+   ═══════════════════════════════════════════════════ */
+
+/* Smoother native scroll on all devices */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Promote interactive cards to GPU for silky hover */
+[class*="group"] {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Buttery button transitions */
+a, button {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Prevent layout paint on scroll — key for parallax */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #f5c518; border-radius: 2px; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
