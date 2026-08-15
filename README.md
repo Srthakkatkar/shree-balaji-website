@@ -1,6 +1,6 @@
 #  Shree Balaji Motor Training School
 
-Premium Next.js website — built with Next.js 14, Tailwind CSS, and Framer Motion.
+Premium Next.js website - built with Next.js 14, Tailwind CSS, and Framer Motion.
 
 ## Quick Start
 
