@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LangProvider } from "@/context/LangContext";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "श्री बालाजी मोटर ट्रेनिंग स्कूल | इचलकरंजी",
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="mr" className="scroll-smooth">
       <body className="bg-[#050505] text-[#f8f8f0] font-body overflow-x-hidden">
         <LangProvider>{children}</LangProvider>
+        <Analytics />
       </body>
     </html>
   );
