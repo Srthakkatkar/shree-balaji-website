@@ -5,7 +5,7 @@ import { content, Lang } from "@/lib/lang";
 interface LangCtx {
   lang: Lang;
   toggle: () => void;
-  t: typeof content.mr;
+  t: (typeof content)[Lang];
 }
 
 const Ctx = createContext<LangCtx | null>(null);
